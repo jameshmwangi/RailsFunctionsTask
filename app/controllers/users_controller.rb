@@ -9,6 +9,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # attach profile image if provided
+      if params[:user] && params[:user][:profile_image].present?
+        @user.profile_image.attach(params[:user][:profile_image])
+      end
+
+      # send registration email asynchronously
+      UserMailer.with(user: @user).registration_completed.deliver_later
+
       log_in(@user)
       redirect_to user_path(@user.id), notice: 'アカウントを登録しました。'
     else
@@ -23,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image)
   end
 
   def correct_user

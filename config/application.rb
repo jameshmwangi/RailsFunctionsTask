@@ -20,6 +20,8 @@ module RailsFunctionsTaskApp
         request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+    # Use Sidekiq for Active Job
+    config.active_job.queue_adapter = :sidekiq
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

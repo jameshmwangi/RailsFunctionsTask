@@ -1,6 +1,6 @@
 <h1>Sign up</h1>
 
-<%= form_with(model: @user, local: true) do |f| %>
+<%= form_with(model: @user, local: true, html: { multipart: true }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -31,6 +31,11 @@
   <div class="field">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_image, "Profile image" %>
+    <%= f.file_field :profile_image %>
   </div>
 
   <div class="actions">

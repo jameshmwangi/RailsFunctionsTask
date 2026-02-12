@@ -7,3 +7,10 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+
+<% if @user.profile_image.attached? %>
+  <p>
+    <strong>Profile image:</strong><br>
+    <%= image_tag url_for(@user.profile_image) %>
+  </p>
+<% end %>
