@@ -1,0 +1,11 @@
+:redis:
+  :url: redis://localhost:6379/1
+
+:concurrency: 5
+
+development:
+  :verbosity: 1
+
+production:
+  :concurrency: 25
+  :timeout: 25
