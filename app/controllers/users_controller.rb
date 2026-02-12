@@ -9,9 +9,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # attach profile image if provided
-      if params[:user] && params[:user][:profile_image].present?
-        @user.profile_image.attach(params[:user][:profile_image])
+      # attach profile image if provided via permitted params
+      if user_params[:profile_image].present?
+        @user.profile_image.attach(user_params[:profile_image])
       end
 
       # send registration email asynchronously
