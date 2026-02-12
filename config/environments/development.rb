@@ -36,8 +36,8 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  # Use async adapter in development to avoid needing Redis/Sidekiq locally
-  config.active_job.queue_adapter = :async
+  # Use sidekiq adapter for async jobs
+  config.active_job.queue_adapter = :sidekiq
 
   config.action_mailer.perform_caching = false
 
