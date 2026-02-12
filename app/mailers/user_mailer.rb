@@ -3,6 +3,6 @@ class UserMailer < ApplicationMailer
 
   def registration_completed
     @user = params[:user]
-    mail(to: @user.email, subject: 'Registration completed')
+    mail(to: @user.email, subject: '登録完了')
   end
 end

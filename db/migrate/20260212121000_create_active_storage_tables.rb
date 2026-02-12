@@ -7,6 +7,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[6.0]
       t.text     :metadata
       t.bigint   :byte_size,  null: false
       t.string   :checksum,   null: false
+      t.string   :service_name
       t.datetime :created_at, null: false
 
       t.index [ :key ], unique: true
