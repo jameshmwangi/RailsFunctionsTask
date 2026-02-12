@@ -4,7 +4,11 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  if Gem.win_platform?
+    parallelize(workers: 1)
+  else
+    parallelize(workers: :number_of_processors)
+  end
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
